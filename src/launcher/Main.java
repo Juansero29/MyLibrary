@@ -4,21 +4,20 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 public class Main extends Application {
 
-//    /**
-//     * The application's primary stage
-//     */
-//    public static Stage primaryStage;
+    /**
+     * The application's primary stage
+     */
+    public static Stage primaryStage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MainView.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/fxml/MyListedLibView.fxml"));
         Scene s = new Scene(root, 900, 900);
         s.getStylesheets().add("/css/MainView.css");
 

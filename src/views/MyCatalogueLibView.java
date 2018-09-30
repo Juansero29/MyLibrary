@@ -1,10 +1,10 @@
 package views;
 
+import data.BookshelfManager;
 import data.StubData;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -20,9 +20,9 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
- * The MainView controller class
+ * The MyCatalogueLibView controller class
  */
-public class MainView implements Initializable {
+public class MyCatalogueLibView extends BookshelfDisplayerView {
 
 
     //region FXML Fields
@@ -55,12 +55,6 @@ public class MainView implements Initializable {
     private Label descriptionLabel;
     //endregion
 
-    //region Private Fields
-    /**
-     * The bookshelf to showcase
-     */
-    private Bookshelf myBookshelf;
-    //endregion
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,7 +74,8 @@ public class MainView implements Initializable {
     /**
      * Sets up the CSS Ids to the FXML elements
      */
-    private void setupCss() {
+    @Override
+    protected void setupCss() {
         HBox hbox = new HBox();
         hbox.getStyleClass().add("HBox");
     }
@@ -88,8 +83,9 @@ public class MainView implements Initializable {
     /**
      * Binds the bookshelf to the view's elements
      */
-    private void bindBookshelf() {
-        myBookshelf = new Bookshelf();
+    @Override
+    protected void bindBookshelf() {
+        myBookshelf = BookshelfManager.getBookshelf();
         readablesCountLabel.textProperty().set(Integer.toString(myBookshelf.getReadablesCount()));
         currentReadableIndexLabel.textProperty().set(Integer.toString(myBookshelf.getCurrentReadableIndex() + 1));
     }
@@ -99,9 +95,10 @@ public class MainView implements Initializable {
      *
      * @see Bookshelf
      */
-    private void bindCurrentReadable() {
+    @Override
+    protected void bindCurrentReadable() {
 
-        Readable currentReadable = myBookshelf.getcurrentReadable();
+        Readable currentReadable = myBookshelf.getCurrentReadable();
 
         readableTitleTextField.textProperty().bindBidirectional(currentReadable.titleProperty());
 
@@ -122,7 +119,8 @@ public class MainView implements Initializable {
     /**
      * Sets up all the listeners needed for this view
      */
-    private void setupListeners() {
+    @Override
+    protected void setupListeners() {
 
         previousButton.setOnAction(__ -> myBookshelf.previous());
         nextButton.setOnAction(__ -> myBookshelf.next());
@@ -162,7 +160,8 @@ public class MainView implements Initializable {
      *
      * @param index - the index
      */
-    private void unbind(int index) {
+    @Override
+    protected void unbind(int index) {
 
         Readable r = myBookshelf.getReadableAt(index);
         readableTitleTextField.textProperty().unbindBidirectional(r.titleProperty());

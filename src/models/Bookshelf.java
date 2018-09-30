@@ -2,8 +2,13 @@ package models;
 
 import data.StubData;
 import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ReadOnlyListProperty;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
+import java.nio.channels.ReadableByteChannel;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,11 +23,11 @@ public class Bookshelf {
 
 
     /**
-     * The readbles in this bookshelf
+     * The readables in this bookshelf
      *
      * @see Readable
      */
-    private List<Readable> myReadables;
+    private ObservableList<Readable> theReadablesObs = FXCollections.observableArrayList();
 
     //endregion
 
@@ -58,27 +63,44 @@ public class Bookshelf {
         return readablesCount;
     }
 
-    public void setReadablesCount(int readablesCount) {
+    private void setReadablesCount(int readablesCount) {
         this.readablesCount.set(readablesCount);
     }
     //endregion
 
+    //region theReadablesProperty
+    /**
+     * The observable list of readables.
+     */
+
+    private ReadOnlyListProperty<Readable> theReadables;
+
+    public ReadOnlyListProperty<Readable> theReadablesProperty() {
+        return theReadables;
+    }
+
+//endregion
+
+
     //endregion
 
     //region Constructors
+
     public Bookshelf() {
         this(new ArrayList<>());
         addReadable(StubData.getStubBook());
     }
 
-    public Bookshelf(List<Readable> myReadables) {
-        this.myReadables = myReadables;
+    public Bookshelf(List<Readable> readables) {
+
+        theReadablesObs.addAll(readables);
+        theReadables = new SimpleListProperty<>();
 
         this.currentReadableIndex = new SimpleIntegerProperty();
         this.readablesCount = new SimpleIntegerProperty();
 
         this.setCurrentReadableIndex(-1);
-        this.setReadablesCount(myReadables.size());
+        this.setReadablesCount(theReadablesObs.size());
     }
 
     //endregion
@@ -91,8 +113,8 @@ public class Bookshelf {
      *
      * @return - the readable at the current index
      */
-    public Readable getcurrentReadable() {
-        return myReadables.get(getCurrentReadableIndex());
+    public Readable getCurrentReadable() {
+        return theReadablesObs.get(getCurrentReadableIndex());
     }
 
     /**
@@ -102,9 +124,10 @@ public class Bookshelf {
      */
     public void addReadable(Readable r) {
 
-        myReadables.add(r);
-        setReadablesCount(myReadables.size());
+        theReadablesObs.add(r);
+        setReadablesCount(theReadablesObs.size());
         increment();
+
 
         System.out.println("ADDED READABLE " + r.getTitle());
     }
@@ -125,8 +148,14 @@ public class Bookshelf {
         System.out.println("previous clicked");
     }
 
+    /**
+     * Gets the readable at the specified index
+     *
+     * @param index - the index
+     * @return - the readable
+     */
     public Readable getReadableAt(int index) {
-        return myReadables.get(index);
+        return theReadablesObs.get(index);
     }
     //endregion
 

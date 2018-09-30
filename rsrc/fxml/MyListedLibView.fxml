@@ -4,21 +4,56 @@
 
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="views.MyListedLibView">
     <top>
-        <HBox id="box-custom" alignment="CENTER">
-            <Label id="Title" alignment="CENTER" text="All your books" BorderPane.alignment="CENTER"/>
-        </HBox>
+        <BorderPane>
+            <center>
+                <HBox id="box-custom" alignment="CENTER">
+                    <Label id="Title" alignment="CENTER" text="Bookshelf" BorderPane.alignment="CENTER"/>
+                </HBox>
+            </center>
+
+            <left>
+                <HBox id="box-custom" alignment="CENTER">
+                    <ToggleButton fx:id="toggleButton"/>
+                </HBox>
+            </left>
+        </BorderPane>
+
     </top>
 
     <left>
-        <ListView fx:id="readablesList"/>
+        <ListView fx:id="readablesListView"/>
     </left>
 
     <right>
-        <VBox>
+
+        <VBox id="box-custom" alignment="CENTER">
+            <HBox id="box-custom">
+                <Label text="Title: "/>
+                <TextField fx:id="readableTitleTextFieldDetail"/>
+            </HBox>
+            <HBox id="box-custom">
+                <Label text="Author: "/>
+                <Label fx:id="authorLabelDetail"/>
+                <Label text=" -  "/>
+                <Label fx:id="authorBirthdayLabelDetail"/>
+            </HBox>
+
+            <HBox id="box-custom">
+                <Label text="Pages: "/>
+                <Label fx:id="pageCountLabelDetail"/>
+            </HBox>
+
+
+            <HBox id="box-custom">
+                <Label text="Summary: "/>
+                <Label fx:id="descriptionLabelDetail" wrapText="true"/>
+            </HBox>
 
         </VBox>
     </right>

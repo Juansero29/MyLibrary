@@ -35,7 +35,7 @@
   ~ For more information, please refer to <http://unlicense.org/>
   -->
 
-<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainView">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MyCatalogueLibView">
 
 
     <top>
