@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<!--
+  ~ This is free and unencumbered software released into the public domain.
+  ~
+  ~ Anyone is free to copy, modify, publish, use, compile, sell, or
+  ~ distribute this software, either in source code form or as a compiled
+  ~ binary, for any purpose, commercial or non-commercial, and by any
+  ~ means.
+  ~
+  ~ In jurisdictions that recognize copyright laws, the author or authors
+  ~ of this software dedicate any and all copyright interest in the
+  ~ software to the public domain. We make this dedication for the benefit
+  ~ of the public at large and to the detriment of our heirs and
+  ~ successors. We intend this dedication to be an overt act of
+  ~ relinquishment in perpetuity of all present and future rights to this
+  ~ software under copyright law.
+  ~
+  ~ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+  ~ EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  ~ MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+  ~ IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+  ~ OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+  ~ ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+  ~ OTHER DEALINGS IN THE SOFTWARE.
+  ~
+  ~ For more information, please refer to <http://unlicense.org/>
+  -->
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.MainView">
+
+
+    <top>
+        <HBox id="box-custom" alignment="CENTER">
+            <Label id="Title" alignment="CENTER" text="Bookshelf" BorderPane.alignment="CENTER"/>
+
+            <Button id="bigButton" fx:id="addReadableButton" alignment="TOP_RIGHT" text="+" textAlignment="CENTER"
+                    BorderPane.alignment="TOP_RIGHT"/>
+        </HBox>
+    </top>
+
+
+    <center>
+
+        <HBox id="box-custom" BorderPane.alignment="CENTER">
+            <VBox id="box-custom" alignment="CENTER">
+                <ImageView fx:id="readableCover"/>
+
+                <Button text="..."/>
+            </VBox>
+
+
+            <VBox id="box-custom" alignment="CENTER">
+                <HBox id="box-custom">
+                    <Label text="Title: "/>
+                    <TextField fx:id="readableTitleTextField"/>
+                </HBox>
+                <HBox id="box-custom">
+                    <Label text="Author: "/>
+                    <Label fx:id="authorLabel"/>
+                    <Label text=" -  "/>
+                    <Label fx:id="authorBirthdayLabel"/>
+                </HBox>
+
+                <HBox id="box-custom">
+                    <Label text="Pages: "/>
+                    <Label fx:id="pageCountLabel"/>
+                </HBox>
+
+
+                <HBox id="box-custom">
+                    <Label text="Summary: "/>
+                    <Label fx:id="descriptionLabel" wrapText="true"/>
+                </HBox>
+
+            </VBox>
+        </HBox>
+    </center>
+
+
+    <bottom>
+
+        <BorderPane>
+            <center>
+                <VBox id="box-custom">
+                    <HBox>
+
+                    </HBox>
+
+                    <HBox id="box-custom" alignment="CENTER">
+                        <Button fx:id="previousButton" text="Previous"/>
+
+                        <Button fx:id="readButton" text="Read"/>
+
+                        <Button fx:id="nextButton" text="Next"/>
+                    </HBox>
+
+                    <HBox id="box-custom" alignment="TOP_CENTER">
+                        <Label fx:id="currentReadableIndexLabel" text="0"/>
+
+                        <Label text=" / "/>
+
+                        <Label fx:id="readablesCountLabel" text="0"/>
+                    </HBox>
+                </VBox>
+            </center>
+
+            <right>
+                <Button fx:id="listMyBookshelfButton" text="All my books"/>
+            </right>
+        </BorderPane>
+
+
+    </bottom>
+
+
+</BorderPane>
